@@ -8,17 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		C6A865C02B29C530009DEF25 /* RicippiesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */; };
-		C6A865C22B29C530009DEF25 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865C12B29C530009DEF25 /* ContentView.swift */; };
+		C6A865C22B29C530009DEF25 /* RicippiesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */; };
 		C6A865C42B29C537009DEF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6A865C32B29C537009DEF25 /* Assets.xcassets */; };
 		C6A865C72B29C537009DEF25 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6A865C62B29C537009DEF25 /* Preview Assets.xcassets */; };
+		C6A865CE2B29C7AE009DEF25 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865CD2B29C7AE009DEF25 /* FeedView.swift */; };
+		C6A865D02B29C7F5009DEF25 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865CF2B29C7F5009DEF25 /* CategoriesView.swift */; };
+		C6A865D22B29C83C009DEF25 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D12B29C83C009DEF25 /* AccountView.swift */; };
+		C6A865D42B29C86C009DEF25 /* SavedRicippiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */; };
+		C6A865D62B29CC73009DEF25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D52B29CC73009DEF25 /* Constants.swift */; };
+		C6A865D82B29E10E009DEF25 /* AddRicippieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D72B29E10E009DEF25 /* AddRicippieView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C6A865BC2B29C530009DEF25 /* Ricippies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ricippies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesApp.swift; sourceTree = "<group>"; };
-		C6A865C12B29C530009DEF25 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesTabView.swift; sourceTree = "<group>"; };
 		C6A865C32B29C537009DEF25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6A865C62B29C537009DEF25 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C6A865CD2B29C7AE009DEF25 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		C6A865CF2B29C7F5009DEF25 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		C6A865D12B29C83C009DEF25 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
+		C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRicippiesView.swift; sourceTree = "<group>"; };
+		C6A865D52B29CC73009DEF25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C6A865D72B29E10E009DEF25 /* AddRicippieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRicippieView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +63,16 @@
 		C6A865BE2B29C530009DEF25 /* Ricippies */ = {
 			isa = PBXGroup;
 			children = (
+				C6A865D52B29CC73009DEF25 /* Constants.swift */,
 				C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */,
-				C6A865C12B29C530009DEF25 /* ContentView.swift */,
+				C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */,
 				C6A865C32B29C537009DEF25 /* Assets.xcassets */,
 				C6A865C52B29C537009DEF25 /* Preview Content */,
+				C6A865CD2B29C7AE009DEF25 /* FeedView.swift */,
+				C6A865CF2B29C7F5009DEF25 /* CategoriesView.swift */,
+				C6A865D12B29C83C009DEF25 /* AccountView.swift */,
+				C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */,
+				C6A865D72B29E10E009DEF25 /* AddRicippieView.swift */,
 			);
 			path = Ricippies;
 			sourceTree = "<group>";
@@ -137,8 +155,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6A865C22B29C530009DEF25 /* ContentView.swift in Sources */,
+				C6A865D02B29C7F5009DEF25 /* CategoriesView.swift in Sources */,
+				C6A865D82B29E10E009DEF25 /* AddRicippieView.swift in Sources */,
+				C6A865C22B29C530009DEF25 /* RicippiesTabView.swift in Sources */,
+				C6A865CE2B29C7AE009DEF25 /* FeedView.swift in Sources */,
+				C6A865D42B29C86C009DEF25 /* SavedRicippiesView.swift in Sources */,
+				C6A865D62B29CC73009DEF25 /* Constants.swift in Sources */,
 				C6A865C02B29C530009DEF25 /* RicippiesApp.swift in Sources */,
+				C6A865D22B29C83C009DEF25 /* AccountView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
