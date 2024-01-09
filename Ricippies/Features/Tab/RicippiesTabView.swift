@@ -31,6 +31,10 @@ struct RicippiesTabView: View {
                     FeedView()
                 case 1:
                     CategoriesView()
+                case 3:
+                    SavedRicippiesView()
+                case 4:
+                    AccountView()
                 default:
                     Text("Remaining Tabs")
                 }
@@ -39,7 +43,11 @@ struct RicippiesTabView: View {
             Spacer()
             
             HStack {
+                
+                Spacer()
+                
                 ForEach(0..<5) { num in
+                    
                     Button {
                         selectedIndex = num
                     } label: {
@@ -48,19 +56,18 @@ struct RicippiesTabView: View {
 
                         if num == 2 {
                             Image(systemName: tabBarImageNames[num])
-                                .font(.system(size: 38, weight: .bold))
+                                .font(.system(size: 30, weight: .bold))
                                 .foregroundColor(Color(Constants.brandPrimary))
                         } else {
                             Image(systemName: tabBarImageNames[num])
-                                .font(.system(size: 24, weight: .bold))
+                                .font(.system(size: 20, weight: .bold))
                                 .foregroundColor(selectedIndex == num ? Color(.black) : .init(white: 0.8))
                         }
-                        
                         
                         Spacer()
                     }
                 }
-                
+                Spacer()
             }
             
             

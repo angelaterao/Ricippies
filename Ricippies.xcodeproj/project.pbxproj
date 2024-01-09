@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C617B59F2B4C539000025D55 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C617B59E2B4C539000025D55 /* Recipe.swift */; };
 		C6A865C02B29C530009DEF25 /* RicippiesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */; };
 		C6A865C22B29C530009DEF25 /* RicippiesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */; };
 		C6A865C42B29C537009DEF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6A865C32B29C537009DEF25 /* Assets.xcassets */; };
@@ -17,9 +18,11 @@
 		C6A865D42B29C86C009DEF25 /* SavedRicippiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */; };
 		C6A865D62B29CC73009DEF25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D52B29CC73009DEF25 /* Constants.swift */; };
 		C6A865D82B29E10E009DEF25 /* AddRicippieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D72B29E10E009DEF25 /* AddRicippieView.swift */; };
+		C6CF7F002B4D801D001EDE98 /* ListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF7EFF2B4D801D001EDE98 /* ListingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C617B59E2B4C539000025D55 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		C6A865BC2B29C530009DEF25 /* Ricippies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ricippies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesApp.swift; sourceTree = "<group>"; };
 		C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesTabView.swift; sourceTree = "<group>"; };
@@ -31,6 +34,7 @@
 		C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRicippiesView.swift; sourceTree = "<group>"; };
 		C6A865D52B29CC73009DEF25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C6A865D72B29E10E009DEF25 /* AddRicippieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRicippieView.swift; sourceTree = "<group>"; };
+		C6CF7EFF2B4D801D001EDE98 /* ListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,16 +67,12 @@
 		C6A865BE2B29C530009DEF25 /* Ricippies */ = {
 			isa = PBXGroup;
 			children = (
-				C6A865D52B29CC73009DEF25 /* Constants.swift */,
-				C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */,
-				C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */,
-				C6A865C32B29C537009DEF25 /* Assets.xcassets */,
+				C6CF7EF62B4D7DE4001EDE98 /* App */,
+				C6CF7EF72B4D7DEF001EDE98 /* Features */,
 				C6A865C52B29C537009DEF25 /* Preview Content */,
-				C6A865CD2B29C7AE009DEF25 /* FeedView.swift */,
-				C6A865CF2B29C7F5009DEF25 /* CategoriesView.swift */,
-				C6A865D12B29C83C009DEF25 /* AccountView.swift */,
-				C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */,
-				C6A865D72B29E10E009DEF25 /* AddRicippieView.swift */,
+				C6A865D52B29CC73009DEF25 /* Constants.swift */,
+				C6A865C32B29C537009DEF25 /* Assets.xcassets */,
+				C617B59E2B4C539000025D55 /* Recipe.swift */,
 			);
 			path = Ricippies;
 			sourceTree = "<group>";
@@ -83,6 +83,84 @@
 				C6A865C62B29C537009DEF25 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C6CF7EF62B4D7DE4001EDE98 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C6CF7EF72B4D7DEF001EDE98 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				C6CF7EFD2B4D7E82001EDE98 /* Tab */,
+				C6CF7EFA2B4D7E20001EDE98 /* Account */,
+				C6CF7EFC2B4D7E4E001EDE98 /* Add */,
+				C6CF7EFB2B4D7E25001EDE98 /* Favourites */,
+				C6CF7EF92B4D7E19001EDE98 /* Categories */,
+				C6CF7EF82B4D7E01001EDE98 /* Feed */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		C6CF7EF82B4D7E01001EDE98 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				C6CF7EFE2B4D7FA4001EDE98 /* Views */,
+			);
+			path = Feed;
+			sourceTree = "<group>";
+		};
+		C6CF7EF92B4D7E19001EDE98 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865CF2B29C7F5009DEF25 /* CategoriesView.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		C6CF7EFA2B4D7E20001EDE98 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865D12B29C83C009DEF25 /* AccountView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		C6CF7EFB2B4D7E25001EDE98 /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
+		C6CF7EFC2B4D7E4E001EDE98 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865D72B29E10E009DEF25 /* AddRicippieView.swift */,
+			);
+			path = Add;
+			sourceTree = "<group>";
+		};
+		C6CF7EFD2B4D7E82001EDE98 /* Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */,
+			);
+			path = Tab;
+			sourceTree = "<group>";
+		};
+		C6CF7EFE2B4D7FA4001EDE98 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865CD2B29C7AE009DEF25 /* FeedView.swift */,
+				C6CF7EFF2B4D801D001EDE98 /* ListingView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,11 +234,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6A865D02B29C7F5009DEF25 /* CategoriesView.swift in Sources */,
+				C6CF7F002B4D801D001EDE98 /* ListingView.swift in Sources */,
 				C6A865D82B29E10E009DEF25 /* AddRicippieView.swift in Sources */,
 				C6A865C22B29C530009DEF25 /* RicippiesTabView.swift in Sources */,
 				C6A865CE2B29C7AE009DEF25 /* FeedView.swift in Sources */,
 				C6A865D42B29C86C009DEF25 /* SavedRicippiesView.swift in Sources */,
 				C6A865D62B29CC73009DEF25 /* Constants.swift in Sources */,
+				C617B59F2B4C539000025D55 /* Recipe.swift in Sources */,
 				C6A865C02B29C530009DEF25 /* RicippiesApp.swift in Sources */,
 				C6A865D22B29C83C009DEF25 /* AccountView.swift in Sources */,
 			);

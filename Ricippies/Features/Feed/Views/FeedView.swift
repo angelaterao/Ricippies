@@ -10,8 +10,15 @@ import SwiftUI
 struct FeedView: View {
     var body: some View {
         NavigationView {
-            Text("Feed View")
-                .navigationTitle("Feed")
+            ScrollView {
+                LazyVStack(spacing: 33) {
+                    ForEach(0...10, id: \.self) { listing in
+                        ListingView()
+                    }
+                }
+            }
+            .navigationTitle("Feed")
+            .padding()
         }
         
     }

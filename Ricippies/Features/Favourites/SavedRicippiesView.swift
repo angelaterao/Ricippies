@@ -9,7 +9,10 @@ import SwiftUI
 
 struct SavedRicippiesView: View {
     var body: some View {
-        Text("Saved Ricippies View")
+        NavigationView {
+            Text("Saved Ricippies View")
+                .navigationTitle("Favourites")
+        }
     }
 }
 
