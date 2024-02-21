@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RicippiesTabView: View {
     
+//    @EnvironmentObject var viewModelFactory: ViewModelFactory
+    
     let tabBarImageNames = [Constants.home,
                             Constants.list,
                             Constants.add,
@@ -16,13 +18,14 @@ struct RicippiesTabView: View {
                             Constants.account]
     
     @State var selectedIndex = 0
+    @State var showModal = false
+    
     
 //    init() {
 //        UITabBar.appearance().unselectedItemTintColor = UIColor.systemBackground
 //    }
     
     var body: some View {
-        
         VStack {
             
             ZStack {
@@ -49,11 +52,15 @@ struct RicippiesTabView: View {
                 ForEach(0..<5) { num in
                     
                     Button {
-                        selectedIndex = num
+                        if num == 2 {
+                            showModal.toggle()
+                        } else {
+                            selectedIndex = num
+                        }
                     } label: {
                         
                         Spacer()
-
+                        
                         if num == 2 {
                             Image(systemName: tabBarImageNames[num])
                                 .font(.system(size: 30, weight: .bold))
@@ -70,7 +77,9 @@ struct RicippiesTabView: View {
                 Spacer()
             }
             
-            
+        }
+        .fullScreenCover(isPresented: $showModal) {
+            AddRecipeView()
         }
         
 

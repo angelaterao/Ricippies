@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct RicippiesApp: App {
+    
+//    let viewModelFactory = ViewModelFactory()
+    
     var body: some Scene {
         WindowGroup {
             RicippiesTabView()
+//                .environmentObject(viewModelFactory)
         }
     }
 }
