@@ -9,19 +9,28 @@ import Foundation
 
 class AddRecipeViewModel: ObservableObject {
     
-    @Published var recipeName = ""
-    @Published var recipe: Recipe
+    @Published var name: String = ""
+    @Published var numServings: Int = 4
+//    @Published var ingredients: [Ingredient]
+//    @Published var preparationSteps: [PreparationStep]
+    @Published var difficultyLevel: Difficulty = .medium
+    @Published var cookingTime: Int = 10
+    @Published var bakingTime: Int = 10
     
-    var recipeController: RecipeController
+    private let addRecipeService: AddRecipeService
     
-    init(recipe: Recipe, recipeController: RecipeController) {
-        self.recipe = recipe
-        self.recipeController = recipeController
-        self.recipeName = recipe.name 
+    init(addRecipeService: AddRecipeService) {
+        self.addRecipeService = addRecipeService
     }
     
-    func addRecipe() {
-        recipeController.addRecipe(recipe)
+    func addRecipe() async throws {
+        let recipe = Recipe(id: 1, name: name, imageURLs: [], user: User(id: 1, firstName: "test", familyName: "test", description: "test", imageURL: "", email: "test"), numServings: numServings, ingredients: [Ingredient(id: 1, name: "test", amount: 2.0, measure: .gr)], preparationSteps: [PreparationStep(id: 1, description: "test")], difficultyLevel: difficultyLevel, cookingTime: cookingTime, bakingTime: bakingTime, isFavourite: false, isLiked: false)
+        
+        do {
+            try await addRecipeService.postRecipe(recipe: recipe)
+        } catch {
+            print("DEBUG: Failed to add recipe with error: \(error.localizedDescription)")
+        }
     }
     
     

@@ -25,8 +25,16 @@ struct RecipeCardView: View {
             
             HStack() {
                 
-                Image(recipe.user.imageURL)
-                    .resizable()
+                
+                AsyncImage(url: URL(string: recipe.user.imageURL ?? ""), content: { phase in
+                    if let image = phase.image {
+                        image
+                    } else {
+                        Color.blue
+                    }
+                })
+//                Image(recipe.user.imageURL ?? "")
+//                    .resizable()
                     .scaledToFill()
                     .frame(width: 35, height: 35)
                     .clipShape(Circle())

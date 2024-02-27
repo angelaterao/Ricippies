@@ -9,8 +9,6 @@ import SwiftUI
 
 struct RicippiesTabView: View {
     
-//    @EnvironmentObject var viewModelFactory: ViewModelFactory
-    
     let tabBarImageNames = [Constants.home,
                             Constants.list,
                             Constants.add,
@@ -19,6 +17,7 @@ struct RicippiesTabView: View {
     
     @State var selectedIndex = 0
     @State var showModal = false
+    
     
     
 //    init() {

@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Recipe: Identifiable, Codable, Hashable {
-    let id: String
+    let id: Int
     var name: String
     var imageURLs: [String]
     let user: User
@@ -25,18 +25,18 @@ struct Recipe: Identifiable, Codable, Hashable {
 }
 
 struct Ingredient: Identifiable, Codable, Hashable {
-    let id: String
+    let id: Int
     var name: String
     var amount: Double
     var measure: Measure
 }
 
 struct PreparationStep: Identifiable, Codable, Hashable {
-    let id: String
+    let id: Int
     var description: String
 }
 
-enum Difficulty: Int, Codable, Identifiable, Hashable {
+enum Difficulty: String, Codable, Identifiable, Hashable, CaseIterable {
     case easy
     case medium
     case difficult
@@ -49,10 +49,10 @@ enum Difficulty: Int, Codable, Identifiable, Hashable {
         }
     }
     
-    var id: Int { return self.rawValue }
+    var id: String { return self.title }
 }
 
-enum Measure: Int, Codable, Identifiable, Hashable, CaseIterable {
+enum Measure: String, Codable, Identifiable, Hashable, CaseIterable {
     case gr
     case ml
     case tsp
@@ -79,7 +79,7 @@ enum Measure: Int, Codable, Identifiable, Hashable, CaseIterable {
         }
     }
     
-    var id: Int { return self.rawValue }
+    var id: String { return self.title }
 }
 
 //struct Comment: Identifiable, Codable, Hashable {

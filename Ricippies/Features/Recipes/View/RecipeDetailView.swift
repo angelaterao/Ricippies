@@ -110,7 +110,7 @@ struct ProfileBannerView: View {
     var body: some View {
         HStack() {
             
-            Image(recipe.user.imageURL)
+            Image(recipe.user.imageURL ?? "")
                 .resizable()
                 .scaledToFill()
                 .frame(width: 35, height: 35)
@@ -215,19 +215,18 @@ struct IngredientsView: View {
                                 Text("\(ingredient.measure.title)")
                             }
                         }
-                        .frame(width: 85, height: -5, alignment: .leading)
+                        .frame(width: 85, height: 0, alignment: .leading)
                         
                         VStack(alignment: .leading)  {
                             Text("\(ingredient.name)")
                         }
                     }
-                    
                 }
             }
-            
-            Divider().frame(width: 350)
         }
         .padding()
+        
+        Divider().frame(width: 350)
     }
 }
 
@@ -236,21 +235,25 @@ struct StepsView: View {
     let recipe: Recipe
     
     var body: some View {
-        VStack(alignment: .leading) {
-            
-            Text("Preparation Steps")
-                .font(.headline)
-                .fontWeight(.semibold)
-            
-            Spacer(minLength: 20)
-            
-            ForEach(recipe.preparationSteps) { step in
-                Text("Step")
-                Spacer()
-                Text(step.description)
-                    .font(.subheadline)
+        HStack{
+            VStack(alignment: .leading) {
+                
+                Text("Preparation Steps")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                
                 Spacer(minLength: 20)
+                
+                ForEach(recipe.preparationSteps) { step in
+                    Text("Step")
+                    Spacer()
+                    Text(step.description)
+                        .font(.subheadline)
+                    Spacer(minLength: 20)
+                }
             }
+            
+            Spacer()
             
         }.padding()
         
