@@ -17,13 +17,9 @@ struct AddRecipeView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.dismiss) var dismiss
     
-    @State private var difficulty: Difficulty = .medium
-    @State private var numServings: Int = 4
-    @State private var ingredients = [Ingredient]()
-    
-//    @State private var ricippieName = ""
-    @State private var preparationTime = ""
-    @State private var cookingTime = ""
+    @State var difficultyLevel: Difficulty = .medium
+    @State var numServings: Int = 4
+    @State var ingredients = [Ingredient]()
     
     @ObservedObject var addRecipeViewModel = AddRecipeViewModel(addRecipeService: AddRecipeService())
     
@@ -41,53 +37,18 @@ struct AddRecipeView: View {
             }
             
             VStack(spacing: 18) {
-                CustomTextField(userAnswer: $addRecipeViewModel.name, textFieldTitle: "Ricippie Name", placeHolder: "Enter ricippie name..")
                 
-//                CustomTextField(userAnswer: $addRecipeViewModel.bakingTime, textFieldTitle: "Preparation Time", sideInfoText: "min", keyBoardType: .numberPad)
-//
-//                CustomTextField(userAnswer: $addRecipeViewModel.cookingTime, textFieldTitle: "Cooking Time", sideInfoText: "min", keyBoardType: .numberPad)
+                RecipeMainInfoView(addRecipeViewModel: addRecipeViewModel, difficultyLevel: $difficultyLevel, numServings: $numServings)
+                
+                RecipeIngredientsInfoView(ingredients: $ingredients)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     
-                    Text("Difficulty")
-                    
-                    Picker("", selection: $difficulty) {
-                        ForEach(DifficultyLevel.allCases) { level in
-                            Text(level.rawValue.capitalized).tag(level)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
-                    
-                    Stepper {
-                        Text("\(numServings) servings")
-                    } onIncrement: {
-                        numServings += 1
-                    } onDecrement: {
-                        guard numServings > 0 else { return }
-                        numServings -= 1 }
-                    
-                    Text("Ingredients")
-                    
-                    IngredientView()
-                    
-                    ForEach($ingredients, id: \.self) { index in
-                        HStack {
-                            IngredientView()
-                            
-                            Button {
-//                                ingredientNames.remove(at: index)
-                                print(ingredients)
-                            } label: {
-                                Image(systemName: "trash")
-                                    .foregroundColor(.gray)
-                            }
-                        }
-                        
-                    }
-                    
                     Button {
-                        addRecipeViewModel.difficultyLevel = difficulty
-//                        ingredients.append(Ingredient)
+                        
+                        addRecipeViewModel.difficultyLevel = difficultyLevel
+                        addRecipeViewModel.numServings = numServings
+                        
                         Task {
                             do {
                                 try await addRecipeViewModel.addRecipe()
@@ -97,7 +58,6 @@ struct AddRecipeView: View {
                             }
                         }
                     } label: {
-//                        Text("+ Add Ingredient")
                         Text("Add Recipe")
                             .font(.subheadline)
                             .foregroundColor(.gray)
@@ -126,11 +86,99 @@ struct AddRicippieView_Previews: PreviewProvider {
     }
 }
 
+struct RecipeIngredientsInfoView: View {
+    
+    @Binding var ingredients: [Ingredient]
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                
+                Text("Ingredients")
+                
+                IngredientView()
+                
+                ForEach($ingredients, id: \.self) { index in
+                    HStack {
+                        IngredientView()
+                        
+                        Button {
+//                                ingredientNames.remove(at: index)
+                            print(ingredients)
+                        } label: {
+                            Image(systemName: "trash")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    
+                }
+                
+                Button {
+//                        ingredients.append(Ingredient)
+                } label: {
+                    Text("+ Add Ingredient")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .frame(height: 44)
+                        .padding(.horizontal)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(lineWidth: 1.0)
+                                .foregroundColor(Color(.systemGray4))
+                        }
+                }
+                //            .padding(30)
+            }
+            
+            Spacer()
+        }
+    }
+    
+}
 
-struct CustomTextField: View {
-    
+struct RecipeMainInfoView: View {
+
+    @ObservedObject var addRecipeViewModel: AddRecipeViewModel
+
+    @Binding var difficultyLevel: Difficulty
+    @Binding var numServings: Int
+
+    var body: some View {
+        CustomTextFieldView(userAnswer: $addRecipeViewModel.name, textFieldTitle: "Ricippie Name", placeHolder: "Enter ricippie name..")
+
+        CustomTextFieldView(userAnswer: $addRecipeViewModel.bakingTime, textFieldTitle: "Preparation Time", sideInfoText: "min", keyBoardType: .numberPad)
+
+        CustomTextFieldView(userAnswer: $addRecipeViewModel.cookingTime, textFieldTitle: "Cooking Time", sideInfoText: "min", keyBoardType: .numberPad)
+        
+        VStack(alignment: .leading, spacing: 20) {
+            
+            Text("Difficulty")
+            
+            Picker("", selection: $difficultyLevel) {
+                ForEach(Difficulty.allCases) { level in
+                    Text(level.rawValue.capitalized).tag(level)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            
+            Stepper {
+                Text("\(numServings) servings")
+            } onIncrement: {
+                numServings += 1
+            } onDecrement: {
+                guard numServings > 0 else { return }
+                numServings -= 1 }
+            
+        }
+    }
+
+}
+
+
+struct CustomTextFieldView: View {
+
     @Binding var userAnswer: String
-    
+
     var textFieldTitle: String = ""
     var placeHolder: String = ""
     var sideInfoText: String = ""
