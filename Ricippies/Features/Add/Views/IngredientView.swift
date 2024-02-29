@@ -9,11 +9,8 @@ import SwiftUI
 
 struct IngredientView: View {
 
-//    @Binding var ingredient: Ingredient
-
     @ObservedObject var ingredientViewModel = IngredientViewModel(ingredient: Ingredient(id: 0, name: "", amount: 0, measure: .gr))
     
-
     var body: some View {
         HStack() {
 
@@ -30,49 +27,9 @@ struct IngredientView: View {
             }
             .tint(Color.black)
             .frame(width: 120)
-
-            
-            
         }
 
     }
-
-
-//    @Binding var ingredientName: String
-//    @Binding var ingredientAmount: String
-//    @Binding var measure: Measure
-//
-//
-//    var body: some View {
-//        HStack() {
-//
-//            TextField("Flour", text: $ingredientName)
-//                .frame(width: 150)
-//                .onChange(of: ingredientName) { newName in
-//                    ingredientName = newName
-//                }
-//                .onSubmit {
-//                    print(ingredientName)
-//                }
-//
-//            TextField("250", text: $ingredientAmount)
-//                .frame(width: 40)
-////                .onChange(of: ingredientAmount) { newAmount in
-////                    ingredient.amount = newAmount
-////                }
-//
-//            Picker("Measure", selection: $measure) {
-//                ForEach(Measure.allCases, id: \.self) { measure in
-//                    Text(measure.title)
-//                }
-//            }
-//            .tint(Color.black)
-//            .frame(width: 120)
-//
-//        }
-//
-//    }
-
 }
 
 struct IngredientView_Previews: PreviewProvider {

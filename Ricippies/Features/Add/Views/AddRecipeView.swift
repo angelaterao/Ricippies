@@ -50,6 +50,7 @@ struct AddRecipeView: View {
                         
                         addRecipeViewModel.difficultyLevel = difficultyLevel
                         addRecipeViewModel.numServings = numServings
+                        addRecipeViewModel.ingredients = ingredientViewModel.recipeIngredients
                         
                         Task {
                             do {
@@ -94,10 +95,6 @@ struct RecipeIngredientsInfoView: View {
     
     @ObservedObject var ingredientViewModel: IngredientViewModel
     
-    
-//    @State var ingredientName = ""
-//    @State var ingredientAmount = ""
-//    @State var measure: Measure = .gr
 
     var body: some View {
         HStack {
@@ -149,61 +146,7 @@ struct RecipeIngredientsInfoView: View {
     }
     
 }
-//
-//struct RecipeIngredientsInfoView: View {
-//
-//    @Binding var ingredients: [Ingredient]
-//
-//
-//    @State var ingredientName = ""
-//    @State var ingredientAmount = ""
-//    @State var measure: Measure = .gr
-//
-//    var body: some View {
-//        HStack {
-//            VStack(alignment: .leading) {
-//
-//                Text("Ingredients")
-//
-//                IngredientView(ingredientName: $ingredientName, ingredientAmount: $ingredientAmount, measure: $measure)
-//
-//                ForEach($ingredients, id: \.self) { index in
-//                    HStack {
-//                        IngredientView(ingredientName: $ingredientName, ingredientAmount: $ingredientAmount, measure: $measure)
-//
-//                        Button {
-////                                ingredientNames.remove(at: index)
-//                            print(ingredients)
-//                        } label: {
-//                            Image(systemName: "trash")
-//                                .foregroundColor(.gray)
-//                        }
-//                    }
-//
-//                }
-//
-//                Button {
-////                        ingredients.append(Ingredient)
-//                } label: {
-//                    Text("+ Add Ingredient")
-//                        .font(.subheadline)
-//                        .foregroundColor(.gray)
-//                        .frame(height: 44)
-//                        .padding(.horizontal)
-//                        .overlay {
-//                            RoundedRectangle(cornerRadius: 20)
-//                                .stroke(lineWidth: 1.0)
-//                                .foregroundColor(Color(.systemGray4))
-//                        }
-//                }
-//                //            .padding(30)
-//            }
-//
-//            Spacer()
-//        }
-//    }
-//
-//}
+
 
 struct RecipeMainInfoView: View {
 
@@ -213,13 +156,7 @@ struct RecipeMainInfoView: View {
     @Binding var numServings: Int
 
     var body: some View {
-//        CustomTextFieldView(isAnswerANumber: false, userAnswer: $addRecipeViewModel.name, textFieldTitle: "Ricippie Name", placeHolder: "Enter ricippie name..")
-//
-//        CustomTextFieldView(isAnswerANumber: true, userAnswer: $addRecipeViewModel.bakingTime, textFieldTitle: "Preparation Time", sideInfoText: "min")
-//
-//        CustomTextFieldView(isAnswerANumber: true, userAnswer: $addRecipeViewModel.cookingTime, textFieldTitle: "Cooking Time", sideInfoText: "min")
-//
-        
+
         VStack(alignment: .leading, spacing: 13) {
             
             Text("Ricippie Name")
@@ -246,9 +183,7 @@ struct RecipeMainInfoView: View {
                     .foregroundColor(.gray)
             }
             .modifier(FrameTextFieldModifier())
-            
         }
-        
         
         VStack(alignment: .leading, spacing: 20) {
             
@@ -288,43 +223,3 @@ struct FrameTextFieldModifier: ViewModifier {
     }
     
 }
-
-//
-//struct CustomTextFieldView: View {
-//
-//    var isAnswerANumber: Bool
-//    @Binding var userAnswer: String
-//
-//    var textFieldTitle: String = ""
-//    var placeHolder: String = ""
-//    var sideInfoText: String = ""
-//
-//    var body: some View {
-//
-//        VStack(alignment: .leading, spacing: 13) {
-//
-//            Text(textFieldTitle)
-//
-//            HStack {
-//                if isAnswerANumber {
-//                    TextField(placeHolder, value: $userAnswer, formatter: NumberFormatter())
-//                        .keyboardType(.numberPad)
-//                } else {
-//                    TextField(placeHolder, text: $userAnswer)
-//                        .keyboardType(.alphabet)
-//                }
-//
-//                Text(sideInfoText)
-//                    .foregroundColor(.gray)
-//            }
-//            .frame(height: 44)
-//            .padding(.horizontal)
-//            .overlay {
-//                RoundedRectangle(cornerRadius: 5)
-//                    .stroke(lineWidth: 1.0)
-//                    .foregroundColor(Color(.systemGray4))
-//            }
-//        }
-//    }
-//
-//}
