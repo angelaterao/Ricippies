@@ -10,6 +10,7 @@ import Foundation
 class IngredientViewModel: ObservableObject {
     
     @Published var ingredient: Ingredient
+    @Published var recipeIngredients = [Ingredient]()
     
     init(ingredient: Ingredient) {
         self.ingredient = ingredient

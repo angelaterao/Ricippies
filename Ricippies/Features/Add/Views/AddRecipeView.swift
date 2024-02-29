@@ -19,11 +19,11 @@ struct AddRecipeView: View {
     
     @State var difficultyLevel: Difficulty = .medium
     @State var numServings: Int = 4
-    @State var ingredients = [Ingredient]()
     
     @ObservedObject var addRecipeViewModel = AddRecipeViewModel(addRecipeService: AddRecipeService())
     
-    @ObservedObject var ingredientViewModel: IngredientViewModel
+    // Ici j'ai besoin de l'initialiser parce que sinon j'ai une erreur dans la preview+tabview: pq?
+    @ObservedObject var ingredientViewModel = IngredientViewModel(ingredient: Ingredient(id: 0, name: "", amount: 0, measure: .gr))
     
     var body: some View {
         ScrollView {
@@ -42,7 +42,7 @@ struct AddRecipeView: View {
                 
                 RecipeMainInfoView(addRecipeViewModel: addRecipeViewModel, difficultyLevel: $difficultyLevel, numServings: $numServings)
                 
-                RecipeIngredientsInfoView(ingredients: $ingredients, ingredient: ingredientViewModel.ingredient)
+                RecipeIngredientsInfoView(ingredientViewModel: ingredientViewModel)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     
@@ -84,6 +84,7 @@ struct AddRecipeView: View {
 
 struct AddRicippieView_Previews: PreviewProvider {
     static var previews: some View {
+
         AddRecipeView()
     }
 }
@@ -91,9 +92,8 @@ struct AddRicippieView_Previews: PreviewProvider {
 
 struct RecipeIngredientsInfoView: View {
     
-    @Binding var ingredients: [Ingredient]
+    @ObservedObject var ingredientViewModel: IngredientViewModel
     
-    @State var ingredient: Ingredient
     
 //    @State var ingredientName = ""
 //    @State var ingredientAmount = ""
@@ -105,25 +105,30 @@ struct RecipeIngredientsInfoView: View {
                 
                 Text("Ingredients")
                 
-                IngredientView(ingredient: $ingredient)
+                IngredientView(ingredientViewModel: ingredientViewModel)
                 
-                ForEach($ingredients, id: \.self) { index in
-                    HStack {
-                        IngredientView(ingredient: $ingredient)
-                        
-                        Button {
-//                                ingredientNames.remove(at: index)
-                            print(ingredients)
-                        } label: {
-                            Image(systemName: "trash")
-                                .foregroundColor(.gray)
-                        }
-                    }
-                    
-                }
+                Text("Ingredient name: \(ingredientViewModel.ingredient.name)")
+                Text("Ingredient measure: \(ingredientViewModel.ingredient.measure.title)")
+                
+//                ForEach($ingredients, id: \.self) { index in
+//                    HStack {
+//                        IngredientView(ingredient: $ingredientViewModel.ingredient)
+//
+//                        Button {
+////                                ingredientNames.remove(at: index)
+//                            print(ingredients)
+//                        } label: {
+//                            Image(systemName: "trash")
+//                                .foregroundColor(.gray)
+//                        }
+//                    }
+//
+//                }
                 
                 Button {
-//                        ingredients.append(Ingredient)
+                    ingredientViewModel.recipeIngredients.append(ingredientViewModel.ingredient)
+                    print(ingredientViewModel.ingredient)
+                    print("All ingredients: \(ingredientViewModel.recipeIngredients)")
                 } label: {
                     Text("+ Add Ingredient")
                         .font(.subheadline)
@@ -208,11 +213,42 @@ struct RecipeMainInfoView: View {
     @Binding var numServings: Int
 
     var body: some View {
-        CustomTextFieldView(userAnswer: $addRecipeViewModel.name, textFieldTitle: "Ricippie Name", placeHolder: "Enter ricippie name..")
-
-        CustomTextFieldView(userAnswer: $addRecipeViewModel.bakingTime, textFieldTitle: "Preparation Time", sideInfoText: "min", keyBoardType: .numberPad)
-
-        CustomTextFieldView(userAnswer: $addRecipeViewModel.cookingTime, textFieldTitle: "Cooking Time", sideInfoText: "min", keyBoardType: .numberPad)
+//        CustomTextFieldView(isAnswerANumber: false, userAnswer: $addRecipeViewModel.name, textFieldTitle: "Ricippie Name", placeHolder: "Enter ricippie name..")
+//
+//        CustomTextFieldView(isAnswerANumber: true, userAnswer: $addRecipeViewModel.bakingTime, textFieldTitle: "Preparation Time", sideInfoText: "min")
+//
+//        CustomTextFieldView(isAnswerANumber: true, userAnswer: $addRecipeViewModel.cookingTime, textFieldTitle: "Cooking Time", sideInfoText: "min")
+//
+        
+        VStack(alignment: .leading, spacing: 13) {
+            
+            Text("Ricippie Name")
+            HStack {
+                TextField("Enter ricippie name..", text: $addRecipeViewModel.name)
+                    .keyboardType(.alphabet)
+            }
+            .modifier(FrameTextFieldModifier())
+            
+            Text("Preparation Time")
+            HStack {
+                TextField("", value: $addRecipeViewModel.bakingTime, formatter: NumberFormatter())
+                    .keyboardType(.numberPad)
+                Text("min")
+                    .foregroundColor(.gray)
+            }
+            .modifier(FrameTextFieldModifier())
+            
+            Text("Cooking Time")
+            HStack {
+                TextField("", value: $addRecipeViewModel.cookingTime, formatter: NumberFormatter())
+                    .keyboardType(.numberPad)
+                Text("min")
+                    .foregroundColor(.gray)
+            }
+            .modifier(FrameTextFieldModifier())
+            
+        }
+        
         
         VStack(alignment: .leading, spacing: 20) {
             
@@ -238,32 +274,10 @@ struct RecipeMainInfoView: View {
 
 }
 
-
-struct CustomTextFieldView: View {
-
-    @Binding var userAnswer: String
-
-    var textFieldTitle: String = ""
-    var placeHolder: String = ""
-    var sideInfoText: String = ""
-    var keyBoardType: UIKeyboardType = .alphabet
+struct FrameTextFieldModifier: ViewModifier {
     
-    var body: some View {
-        
-        VStack(alignment: .leading, spacing: 13) {
-            
-            Text(textFieldTitle)
-            
-            HStack {
-                TextField(placeHolder, text: $userAnswer)
-                    .onSubmit {
-                        print(userAnswer)
-                    }
-                    .keyboardType(keyBoardType)
-                
-                Text(sideInfoText)
-                    .foregroundColor(.gray)
-            }
+    func body(content: Content) -> some View {
+        content
             .frame(height: 44)
             .padding(.horizontal)
             .overlay {
@@ -271,7 +285,46 @@ struct CustomTextFieldView: View {
                     .stroke(lineWidth: 1.0)
                     .foregroundColor(Color(.systemGray4))
             }
-        }
     }
     
 }
+
+//
+//struct CustomTextFieldView: View {
+//
+//    var isAnswerANumber: Bool
+//    @Binding var userAnswer: String
+//
+//    var textFieldTitle: String = ""
+//    var placeHolder: String = ""
+//    var sideInfoText: String = ""
+//
+//    var body: some View {
+//
+//        VStack(alignment: .leading, spacing: 13) {
+//
+//            Text(textFieldTitle)
+//
+//            HStack {
+//                if isAnswerANumber {
+//                    TextField(placeHolder, value: $userAnswer, formatter: NumberFormatter())
+//                        .keyboardType(.numberPad)
+//                } else {
+//                    TextField(placeHolder, text: $userAnswer)
+//                        .keyboardType(.alphabet)
+//                }
+//
+//                Text(sideInfoText)
+//                    .foregroundColor(.gray)
+//            }
+//            .frame(height: 44)
+//            .padding(.horizontal)
+//            .overlay {
+//                RoundedRectangle(cornerRadius: 5)
+//                    .stroke(lineWidth: 1.0)
+//                    .foregroundColor(Color(.systemGray4))
+//            }
+//        }
+//    }
+//
+//}
