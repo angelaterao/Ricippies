@@ -23,6 +23,8 @@ struct AddRecipeView: View {
     
     @ObservedObject var addRecipeViewModel = AddRecipeViewModel(addRecipeService: AddRecipeService())
     
+    @ObservedObject var ingredientViewModel: IngredientViewModel
+    
     var body: some View {
         ScrollView {
             
@@ -40,7 +42,7 @@ struct AddRecipeView: View {
                 
                 RecipeMainInfoView(addRecipeViewModel: addRecipeViewModel, difficultyLevel: $difficultyLevel, numServings: $numServings)
                 
-                RecipeIngredientsInfoView(ingredients: $ingredients)
+                RecipeIngredientsInfoView(ingredients: $ingredients, ingredient: ingredientViewModel.ingredient)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     
@@ -86,21 +88,28 @@ struct AddRicippieView_Previews: PreviewProvider {
     }
 }
 
+
 struct RecipeIngredientsInfoView: View {
     
     @Binding var ingredients: [Ingredient]
     
+    @State var ingredient: Ingredient
+    
+//    @State var ingredientName = ""
+//    @State var ingredientAmount = ""
+//    @State var measure: Measure = .gr
+
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 
                 Text("Ingredients")
                 
-                IngredientView()
+                IngredientView(ingredient: $ingredient)
                 
                 ForEach($ingredients, id: \.self) { index in
                     HStack {
-                        IngredientView()
+                        IngredientView(ingredient: $ingredient)
                         
                         Button {
 //                                ingredientNames.remove(at: index)
@@ -135,6 +144,61 @@ struct RecipeIngredientsInfoView: View {
     }
     
 }
+//
+//struct RecipeIngredientsInfoView: View {
+//
+//    @Binding var ingredients: [Ingredient]
+//
+//
+//    @State var ingredientName = ""
+//    @State var ingredientAmount = ""
+//    @State var measure: Measure = .gr
+//
+//    var body: some View {
+//        HStack {
+//            VStack(alignment: .leading) {
+//
+//                Text("Ingredients")
+//
+//                IngredientView(ingredientName: $ingredientName, ingredientAmount: $ingredientAmount, measure: $measure)
+//
+//                ForEach($ingredients, id: \.self) { index in
+//                    HStack {
+//                        IngredientView(ingredientName: $ingredientName, ingredientAmount: $ingredientAmount, measure: $measure)
+//
+//                        Button {
+////                                ingredientNames.remove(at: index)
+//                            print(ingredients)
+//                        } label: {
+//                            Image(systemName: "trash")
+//                                .foregroundColor(.gray)
+//                        }
+//                    }
+//
+//                }
+//
+//                Button {
+////                        ingredients.append(Ingredient)
+//                } label: {
+//                    Text("+ Add Ingredient")
+//                        .font(.subheadline)
+//                        .foregroundColor(.gray)
+//                        .frame(height: 44)
+//                        .padding(.horizontal)
+//                        .overlay {
+//                            RoundedRectangle(cornerRadius: 20)
+//                                .stroke(lineWidth: 1.0)
+//                                .foregroundColor(Color(.systemGray4))
+//                        }
+//                }
+//                //            .padding(30)
+//            }
+//
+//            Spacer()
+//        }
+//    }
+//
+//}
 
 struct RecipeMainInfoView: View {
 

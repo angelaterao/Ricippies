@@ -11,7 +11,7 @@ class AddRecipeViewModel: ObservableObject {
     
     @Published var name: String = ""
     @Published var numServings: Int = 4
-    @Published var ingredients: [Ingredient]
+    @Published var ingredients = [Ingredient]()
 //    @Published var preparationSteps: [PreparationStep]
     @Published var difficultyLevel: Difficulty = .medium
     @Published var cookingTime: String = ""
