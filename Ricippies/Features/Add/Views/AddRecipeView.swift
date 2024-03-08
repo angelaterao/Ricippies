@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 enum DifficultyLevel: String, CaseIterable, Identifiable {
     case easy, medium, difficult
@@ -25,12 +26,16 @@ struct AddRecipeView: View {
     // Ici j'ai besoin de l'initialiser parce que sinon j'ai une erreur dans la preview+tabview: pq?
     @ObservedObject var ingredientViewModel = IngredientViewModel(ingredient: Ingredient(id: 0, name: "", amount: 0, measure: .gr))
     
+    @ObservedObject var preparationStepViewModel = PreparationStepViewModel(preparationStep: PreparationStep(id: 0, description: ""))
+    
     var body: some View {
         ScrollView {
             
             ZStack(alignment: .topLeading) {
-                Rectangle()
-                    .frame(height: 280)
+                
+                PhotoSelectorView()
+//                    .frame(maxWidth: .infinity, height: 280)
+                    .frame(maxWidth: .infinity, maxHeight: 280)
                 
                 DismissButton(dismiss: _dismiss)
                     .onTapGesture {
@@ -38,11 +43,17 @@ struct AddRecipeView: View {
                     }
             }
             
-            VStack(spacing: 18) {
+            VStack(alignment: .leading, spacing: 25) {
+                
+                Text("New Ricippie")
+                    .fontWeight(.bold)
+                    .font(.system(size: 28))
                 
                 RecipeMainInfoView(addRecipeViewModel: addRecipeViewModel, difficultyLevel: $difficultyLevel, numServings: $numServings)
                 
                 RecipeIngredientsInfoView(ingredientViewModel: ingredientViewModel)
+                
+                RecipePreparationInfoView(preparationStepViewModel: preparationStepViewModel)
                 
                 VStack(alignment: .leading, spacing: 20) {
                     
@@ -51,6 +62,7 @@ struct AddRecipeView: View {
                         addRecipeViewModel.difficultyLevel = difficultyLevel
                         addRecipeViewModel.numServings = numServings
                         addRecipeViewModel.ingredients = ingredientViewModel.recipeIngredients
+                        addRecipeViewModel.preparationSteps = preparationStepViewModel.recipePreparationSteps
                         
                         Task {
                             do {
@@ -95,37 +107,36 @@ struct RecipeIngredientsInfoView: View {
     
     @ObservedObject var ingredientViewModel: IngredientViewModel
     
+    @State private var ingredientsCount = 1
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 
+                Divider().frame(width: 350)
+                
+                Spacer(minLength: 25)
+                
                 Text("Ingredients")
+                    .font(.headline)
                 
-                IngredientView(ingredientViewModel: ingredientViewModel)
+                Spacer(minLength: 25)
                 
-                Text("Ingredient name: \(ingredientViewModel.ingredient.name)")
-                Text("Ingredient measure: \(ingredientViewModel.ingredient.measure.title)")
-                
-//                ForEach($ingredients, id: \.self) { index in
-//                    HStack {
-//                        IngredientView(ingredient: $ingredientViewModel.ingredient)
-//
-//                        Button {
-////                                ingredientNames.remove(at: index)
-//                            print(ingredients)
-//                        } label: {
-//                            Image(systemName: "trash")
-//                                .foregroundColor(.gray)
-//                        }
-//                    }
-//
-//                }
+                VStack {
+                    ForEach(1...ingredientsCount, id: \.self) { _ in
+                        
+                        IngredientView(ingredientViewModel: ingredientViewModel)
+                        
+                        Spacer(minLength: 10)
+                    }
+                }
+
+//                Text("Ingredient name: \(ingredientViewModel.ingredient.name)")
+//                Text("Ingredient measure: \(ingredientViewModel.ingredient.measure.title)")
+//                Text("Ingredients: \(ingredientViewModel.recipeIngredients.count)")
                 
                 Button {
-                    ingredientViewModel.recipeIngredients.append(ingredientViewModel.ingredient)
-                    print(ingredientViewModel.ingredient)
-                    print("All ingredients: \(ingredientViewModel.recipeIngredients)")
+                    ingredientsCount += 1
                 } label: {
                     Text("+ Add Ingredient")
                         .font(.subheadline)
@@ -138,22 +149,79 @@ struct RecipeIngredientsInfoView: View {
                                 .foregroundColor(Color(.systemGray4))
                         }
                 }
-                //            .padding(30)
+                .padding(30)
             }
             
             Spacer()
         }
     }
+}
+
+struct RecipePreparationInfoView: View {
     
+    @ObservedObject var preparationStepViewModel: PreparationStepViewModel
+    
+    @State private var preparationSteps = 1
+
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                
+                Divider().frame(width: 350)
+                
+                Spacer(minLength: 25)
+                
+                Text("Preparation")
+                    .font(.headline)
+                
+                Spacer(minLength: 25)
+                
+                VStack {
+                    ForEach(1...preparationSteps, id: \.self) { _ in
+                        
+                        PreparationStepView(preparationStepViewModel: preparationStepViewModel)
+                        
+                        Spacer(minLength: 20)
+                    }
+                }
+                
+                Button {
+                    preparationSteps += 1
+                } label: {
+                    Text("+ Add Step")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .frame(height: 44)
+                        .padding(.horizontal)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(lineWidth: 1.0)
+                                .foregroundColor(Color(.systemGray4))
+                        }
+                }
+                .padding(30)
+            }
+            
+            Spacer()
+        }
+    }
 }
 
 
 struct RecipeMainInfoView: View {
-
+    
     @ObservedObject var addRecipeViewModel: AddRecipeViewModel
 
     @Binding var difficultyLevel: Difficulty
     @Binding var numServings: Int
+    
+    private let quantityFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.locale = Locale.current
+        formatter.numberStyle = .decimal
+        formatter.zeroSymbol = ""
+        return formatter
+    }()
 
     var body: some View {
 
@@ -163,13 +231,16 @@ struct RecipeMainInfoView: View {
             HStack {
                 TextField("Enter ricippie name..", text: $addRecipeViewModel.name)
                     .keyboardType(.alphabet)
+                    
             }
             .modifier(FrameTextFieldModifier())
             
             Text("Preparation Time")
             HStack {
-                TextField("", value: $addRecipeViewModel.bakingTime, formatter: NumberFormatter())
+                TextField("0", value: $addRecipeViewModel.bakingTime, formatter: quantityFormatter)
                     .keyboardType(.numberPad)
+
+                    
                 Text("min")
                     .foregroundColor(.gray)
             }
@@ -177,7 +248,7 @@ struct RecipeMainInfoView: View {
             
             Text("Cooking Time")
             HStack {
-                TextField("", value: $addRecipeViewModel.cookingTime, formatter: NumberFormatter())
+                TextField("0", value: $addRecipeViewModel.cookingTime, formatter: quantityFormatter)
                     .keyboardType(.numberPad)
                 Text("min")
                     .foregroundColor(.gray)

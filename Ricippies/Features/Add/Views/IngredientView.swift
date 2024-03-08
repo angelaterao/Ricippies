@@ -27,8 +27,16 @@ struct IngredientView: View {
             }
             .tint(Color.black)
             .frame(width: 120)
+            
+            Button {
+                ingredientViewModel.recipeIngredients.append(ingredientViewModel.ingredient)
+                print(ingredientViewModel.ingredient)
+                print("All ingredients: \(ingredientViewModel.recipeIngredients)")
+            } label: {
+                Image(systemName: "checkmark")
+                    .foregroundColor(.gray)
+            }
         }
-
     }
 }
 

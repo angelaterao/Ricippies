@@ -24,7 +24,4 @@ class IngredientViewModel: ObservableObject {
         print("Trying to delete ingredient")
     }
     
-    
-    
-    
 }
