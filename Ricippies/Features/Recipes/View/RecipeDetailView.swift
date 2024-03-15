@@ -39,6 +39,7 @@ struct RecipeDetailView: View {
             }
         }
         .ignoresSafeArea()
+        .scrollIndicators(.hidden)
     }
 }
 

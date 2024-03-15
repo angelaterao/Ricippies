@@ -28,8 +28,6 @@ class PhotoSelectorViewModel: ObservableObject {
                 }
             }
         }
-        
         selectedPhotos.removeAll()
     }
-    
 }

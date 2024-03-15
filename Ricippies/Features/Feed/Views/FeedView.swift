@@ -32,15 +32,15 @@ struct FeedView: View {
                         
                         Text("All")
                             .onTapGesture { filterState = .all }
-                            .foregroundColor( filterState == .all ? .black : .gray)
+                            .foregroundColor( filterState == .all ? .black : .init(white: 0.8))
                         
                         Text("Others")
                             .onTapGesture { filterState = .others }
-                            .foregroundColor( filterState == .others ? .black : .gray)
+                            .foregroundColor( filterState == .others ? .black : .init(white: 0.8))
                         
                         Text("Me")
                             .onTapGesture { filterState = .me }
-                            .foregroundColor( filterState == .me ? .black : .gray)
+                            .foregroundColor( filterState == .me ? .black : .init(white: 0.8))
                         
                         Spacer()
                     }
@@ -66,11 +66,12 @@ struct FeedView: View {
                 }
             }
             .navigationBarHidden(true)
-            .padding()
+            .padding(25)
             .navigationDestination(for: Recipe.self) { recipe in
                 RecipeDetailView(recipe: recipe)
                     .navigationBarBackButtonHidden()
             }
+            .scrollIndicators(.hidden)
         }
         
     }

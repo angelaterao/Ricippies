@@ -31,73 +31,88 @@ struct AddRecipeView: View {
     var body: some View {
         ScrollView {
             
-            ZStack(alignment: .topLeading) {
+//            ZStack(alignment: .topLeading) {
+//
+////                PhotoSelectorView()
+//////                    .frame(height: 280)
+////                    .frame(height: 280)
+////                    .clipShape(RoundedRectangle(cornerRadius: 10))
+//
+//                DismissButton(dismiss: _dismiss)
+//                    .onTapGesture {
+//                        presentationMode.wrappedValue.dismiss()
+//                    }
+//            }
+            
+            Spacer()
+            
+            HStack {
+                Text("New Ricippie")
+                    .fontWeight(.bold)
+                    .font(.system(size: 28))
                 
-                PhotoSelectorView()
-//                    .frame(maxWidth: .infinity, height: 280)
-                    .frame(maxWidth: .infinity, maxHeight: 280)
+                Spacer()
                 
-                DismissButton(dismiss: _dismiss)
+                DismissButton(dismiss: _dismiss, imageName: "xmark", padding: 0, offsetY: 0)
                     .onTapGesture {
                         presentationMode.wrappedValue.dismiss()
                     }
             }
+            .padding([.leading, .trailing], 30)
             
-            VStack(alignment: .leading, spacing: 25) {
+            
+            VStack(alignment: .leading, spacing: 10) {
                 
-                Text("New Ricippie")
-                    .fontWeight(.bold)
-                    .font(.system(size: 28))
+                PhotoSelectorView()
+                    .frame(height: 280)
                 
                 RecipeMainInfoView(addRecipeViewModel: addRecipeViewModel, difficultyLevel: $difficultyLevel, numServings: $numServings)
                 
                 RecipeIngredientsInfoView(ingredientViewModel: ingredientViewModel)
                 
                 RecipePreparationInfoView(preparationStepViewModel: preparationStepViewModel)
-                
-                VStack(alignment: .leading, spacing: 20) {
-                    
-                    Button {
-                        
-                        addRecipeViewModel.difficultyLevel = difficultyLevel
-                        addRecipeViewModel.numServings = numServings
-                        addRecipeViewModel.ingredients = ingredientViewModel.recipeIngredients
-                        addRecipeViewModel.preparationSteps = preparationStepViewModel.recipePreparationSteps
-                        
-                        Task {
-                            do {
-                                try await addRecipeViewModel.addRecipe()
-                                presentationMode.wrappedValue.dismiss()
-                            } catch {
-                                print("Error adding recipe: \(error)")
-                            }
-                        }
-                    } label: {
-                        Text("Add Recipe")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                            .frame(height: 44)
-                            .padding(.horizontal)
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(lineWidth: 1.0)
-                                    .foregroundColor(Color(.systemGray4))
-                            }
-                    }
-                    .padding(30)
-                    
-                }
             }
-            .padding()
             
+            VStack(alignment: .trailing, spacing: 20) {
+                
+                Button {
+                    
+                    addRecipeViewModel.difficultyLevel = difficultyLevel
+                    addRecipeViewModel.numServings = numServings
+                    addRecipeViewModel.ingredients = ingredientViewModel.recipeIngredients
+                    addRecipeViewModel.preparationSteps = preparationStepViewModel.recipePreparationSteps
+                    
+                    Task {
+                        do {
+                            try await addRecipeViewModel.addRecipe()
+                            presentationMode.wrappedValue.dismiss()
+                        } catch {
+                            print("Error adding recipe: \(error)")
+                        }
+                    }
+                } label: {
+                    Text("Add Recipe")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .frame(height: 44)
+                        .padding(.horizontal)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(lineWidth: 1.0)
+                                .foregroundColor(Color(.systemGray4))
+                        }
+                }
+                
+            }
+            .padding([.leading, .trailing], 30)
         }
-        .ignoresSafeArea()
+//        .ignoresSafeArea()
+        
     }
 }
 
 struct AddRicippieView_Previews: PreviewProvider {
     static var previews: some View {
-
         AddRecipeView()
     }
 }
@@ -124,9 +139,7 @@ struct RecipeIngredientsInfoView: View {
                 
                 VStack {
                     ForEach(1...ingredientsCount, id: \.self) { _ in
-                        
                         IngredientView(ingredientViewModel: ingredientViewModel)
-                        
                         Spacer(minLength: 10)
                     }
                 }
@@ -149,11 +162,12 @@ struct RecipeIngredientsInfoView: View {
                                 .foregroundColor(Color(.systemGray4))
                         }
                 }
-                .padding(30)
+                .padding([.leading, .trailing], 30)
             }
             
             Spacer()
         }
+        .padding(30)
     }
 }
 
@@ -199,11 +213,12 @@ struct RecipePreparationInfoView: View {
                                 .foregroundColor(Color(.systemGray4))
                         }
                 }
-                .padding(30)
+                .padding([.leading, .trailing], 30)
             }
             
             Spacer()
         }
+        .padding(30)
     }
 }
 
@@ -224,27 +239,48 @@ struct RecipeMainInfoView: View {
     }()
 
     var body: some View {
+        
+        
+        Text("Ricippie Information")
+            .font(.headline)
+            .padding([.leading, .trailing], 30)
+            
+        
+        Spacer(minLength: 1)
 
-        VStack(alignment: .leading, spacing: 13) {
+        VStack(alignment: .leading, spacing: 10) {
+            
+            Stepper {
+                Text("Number of servings : \(numServings)")
+            } onIncrement: {
+                numServings += 1
+            } onDecrement: {
+                guard numServings > 0 else { return }
+                numServings -= 1 }
+            
+            
+            Spacer(minLength: 6)
             
             Text("Ricippie Name")
             HStack {
                 TextField("Enter ricippie name..", text: $addRecipeViewModel.name)
                     .keyboardType(.alphabet)
-                    
             }
             .modifier(FrameTextFieldModifier())
+            
+            Spacer(minLength: 6)
             
             Text("Preparation Time")
             HStack {
                 TextField("0", value: $addRecipeViewModel.bakingTime, formatter: quantityFormatter)
                     .keyboardType(.numberPad)
-
                     
                 Text("min")
                     .foregroundColor(.gray)
             }
             .modifier(FrameTextFieldModifier())
+            
+            Spacer(minLength: 6)
             
             Text("Cooking Time")
             HStack {
@@ -254,28 +290,25 @@ struct RecipeMainInfoView: View {
                     .foregroundColor(.gray)
             }
             .modifier(FrameTextFieldModifier())
+            
         }
+        .padding([.leading, .trailing], 30)
         
-        VStack(alignment: .leading, spacing: 20) {
-            
+        Spacer(minLength: 6)
+
+        VStack(alignment: .leading, spacing: 10) {
+
             Text("Difficulty")
-            
+
             Picker("", selection: $difficultyLevel) {
                 ForEach(Difficulty.allCases) { level in
                     Text(level.rawValue.capitalized).tag(level)
                 }
             }
             .pickerStyle(SegmentedPickerStyle())
-            
-            Stepper {
-                Text("\(numServings) servings")
-            } onIncrement: {
-                numServings += 1
-            } onDecrement: {
-                guard numServings > 0 else { return }
-                numServings -= 1 }
-            
         }
+        .padding([.leading, .trailing], 30)
+        
     }
 
 }

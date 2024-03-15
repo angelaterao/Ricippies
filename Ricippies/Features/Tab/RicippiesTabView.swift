@@ -67,7 +67,7 @@ struct RicippiesTabView: View {
                         } else {
                             Image(systemName: tabBarImageNames[num])
                                 .font(.system(size: 20, weight: .bold))
-                                .foregroundColor(selectedIndex == num ? Color(.black) : .init(white: 0.8))
+                                .foregroundColor(selectedIndex == num ? Color(Constants.brandPrimary) : .init(white: 0.4))
                         }
                         
                         Spacer()
@@ -83,7 +83,7 @@ struct RicippiesTabView: View {
         
 
         
-        
+//        .init(white: 0.8)
 //        TabView(selection: $selection) {
 //            FeedView()
 //                .tabItem {

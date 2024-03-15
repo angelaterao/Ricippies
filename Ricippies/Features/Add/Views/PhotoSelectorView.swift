@@ -17,33 +17,29 @@ struct PhotoSelectorView: View {
     var body: some View {
         
         VStack {
-            
             PhotosPicker(selection: $photoSelectorViewModel.selectedPhotos, maxSelectionCount: maxPhotosToSelect, selectionBehavior: .ordered, matching: .images) {
                 
                 if photoSelectorViewModel.images.count == 0 {
                     Image("addPhotosDefaultImage")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        
                 } else {
-                    
                     TabView {
                         ForEach(0..<photoSelectorViewModel.images.count, id: \.self) { index in
                             Image(uiImage: photoSelectorViewModel.images[index])
                                 .resizable()
                                 .scaledToFill()
-                            
                         }
                     }
                     .tabViewStyle(.page)
                 }
-                
             }
         }
         .onChange(of: photoSelectorViewModel.selectedPhotos) { _ in
             photoSelectorViewModel.convertDataToImage()
-            
         }
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .padding(30)
         
     }
 }
