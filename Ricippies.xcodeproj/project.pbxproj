@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		C6131AE02B57D43D00A8E7BE /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6131ADF2B57D43D00A8E7BE /* DismissButton.swift */; };
+		C6456D562BA8A33100D338D1 /* RicippiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6456D552BA8A33100D338D1 /* RicippiesViewModel.swift */; };
+		C6456D582BA8A35700D338D1 /* RicippiesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6456D572BA8A35700D338D1 /* RicippiesService.swift */; };
+		C6456D5A2BA8AB0900D338D1 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6456D592BA8AB0900D338D1 /* AccountViewModel.swift */; };
 		C66A40442B5E6B0700E3B4F0 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A40432B5E6B0700E3B4F0 /* Recipe.swift */; };
 		C680595D2B97352F00014192 /* PreparationStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680595C2B97352F00014192 /* PreparationStepView.swift */; };
 		C680595F2B97356400014192 /* PreparationStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C680595E2B97356400014192 /* PreparationStepViewModel.swift */; };
 		C68059612B98CEFF00014192 /* PhotoSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68059602B98CEFF00014192 /* PhotoSelectorView.swift */; };
 		C68059632B98D07200014192 /* PhotoSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68059622B98D07200014192 /* PhotoSelectorViewModel.swift */; };
+		C68ADBD22BB178C0004C6B14 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68ADBD12BB178C0004C6B14 /* ProfilePhotoView.swift */; };
 		C69843172B4E9AF2004C02BA /* SearchFilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69843162B4E9AF2004C02BA /* SearchFilterBar.swift */; };
 		C698431A2B4EE840004C02BA /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69843192B4EE840004C02BA /* RecipeDetailView.swift */; };
 		C698431D2B4EEFEA004C02BA /* ImageCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C698431C2B4EEFEA004C02BA /* ImageCarouselView.swift */; };
@@ -40,11 +44,15 @@
 
 /* Begin PBXFileReference section */
 		C6131ADF2B57D43D00A8E7BE /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
+		C6456D552BA8A33100D338D1 /* RicippiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesViewModel.swift; sourceTree = "<group>"; };
+		C6456D572BA8A35700D338D1 /* RicippiesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesService.swift; sourceTree = "<group>"; };
+		C6456D592BA8AB0900D338D1 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		C66A40432B5E6B0700E3B4F0 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		C680595C2B97352F00014192 /* PreparationStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationStepView.swift; sourceTree = "<group>"; };
 		C680595E2B97356400014192 /* PreparationStepViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationStepViewModel.swift; sourceTree = "<group>"; };
 		C68059602B98CEFF00014192 /* PhotoSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorView.swift; sourceTree = "<group>"; };
 		C68059622B98D07200014192 /* PhotoSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewModel.swift; sourceTree = "<group>"; };
+		C68ADBD12BB178C0004C6B14 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		C69843162B4E9AF2004C02BA /* SearchFilterBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFilterBar.swift; sourceTree = "<group>"; };
 		C69843192B4EE840004C02BA /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		C698431C2B4EEFEA004C02BA /* ImageCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselView.swift; sourceTree = "<group>"; };
@@ -82,6 +90,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C6456D4F2BA8A16100D338D1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C6456D592BA8AB0900D338D1 /* AccountViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C6456D522BA8A2F900D338D1 /* Ricippies */ = {
+			isa = PBXGroup;
+			children = (
+				C6456D542BA8A31100D338D1 /* Service */,
+				C6456D532BA8A30400D338D1 /* ViewModel */,
+			);
+			path = Ricippies;
+			sourceTree = "<group>";
+		};
+		C6456D532BA8A30400D338D1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C6456D552BA8A33100D338D1 /* RicippiesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C6456D542BA8A31100D338D1 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				C6456D572BA8A35700D338D1 /* RicippiesService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		C66A403F2B5E699E00E3B4F0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +156,7 @@
 				C698431C2B4EEFEA004C02BA /* ImageCarouselView.swift */,
 				C69843162B4E9AF2004C02BA /* SearchFilterBar.swift */,
 				C6131ADF2B57D43D00A8E7BE /* DismissButton.swift */,
+				C68ADBD12BB178C0004C6B14 /* ProfilePhotoView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -181,6 +223,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		C6A51B462BB45FF6001F7AAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6A865D12B29C83C009DEF25 /* AccountView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C6A865B32B29C530009DEF25 = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +250,7 @@
 		C6A865BE2B29C530009DEF25 /* Ricippies */ = {
 			isa = PBXGroup;
 			children = (
+				C6456D522BA8A2F900D338D1 /* Ricippies */,
 				C6CF7EF62B4D7DE4001EDE98 /* App */,
 				C6CF7EF72B4D7DEF001EDE98 /* Features */,
 				C6A865C52B29C537009DEF25 /* Preview Content */,
@@ -262,7 +313,8 @@
 		C6CF7EFA2B4D7E20001EDE98 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				C6A865D12B29C83C009DEF25 /* AccountView.swift */,
+				C6456D4F2BA8A16100D338D1 /* ViewModel */,
+				C6A51B462BB45FF6001F7AAD /* Views */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -380,6 +432,7 @@
 				C6A865D82B29E10E009DEF25 /* AddRecipeView.swift in Sources */,
 				C68059612B98CEFF00014192 /* PhotoSelectorView.swift in Sources */,
 				C6A865C22B29C530009DEF25 /* RicippiesTabView.swift in Sources */,
+				C6456D582BA8A35700D338D1 /* RicippiesService.swift in Sources */,
 				C6A4CC322B6A4EF300608D06 /* DeveloperPreview.swift in Sources */,
 				C6A865CE2B29C7AE009DEF25 /* FeedView.swift in Sources */,
 				C69F6E852B8F9FCD00236B71 /* IngredientViewModel.swift in Sources */,
@@ -387,7 +440,10 @@
 				C698431A2B4EE840004C02BA /* RecipeDetailView.swift in Sources */,
 				C680595F2B97356400014192 /* PreparationStepViewModel.swift in Sources */,
 				C6A1DD682B76850B008ADD43 /* IngredientView.swift in Sources */,
+				C6456D5A2BA8AB0900D338D1 /* AccountViewModel.swift in Sources */,
+				C68ADBD22BB178C0004C6B14 /* ProfilePhotoView.swift in Sources */,
 				C6A865D62B29CC73009DEF25 /* Constants.swift in Sources */,
+				C6456D562BA8A33100D338D1 /* RicippiesViewModel.swift in Sources */,
 				C66A40442B5E6B0700E3B4F0 /* Recipe.swift in Sources */,
 				C69843172B4E9AF2004C02BA /* SearchFilterBar.swift in Sources */,
 				C6A1DD6D2B7E6853008ADD43 /* RecipeDetailViewModel.swift in Sources */,

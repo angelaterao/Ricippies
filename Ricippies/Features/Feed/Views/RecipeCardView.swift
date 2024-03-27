@@ -25,20 +25,7 @@ struct RecipeCardView: View {
             
             HStack() {
                 
-                
-                AsyncImage(url: URL(string: recipe.user.imageURL ?? ""), content: { phase in
-                    if let image = phase.image {
-                        image
-                    } else {
-                        Color.blue
-                    }
-                })
-//                Image(recipe.user.imageURL ?? "")
-//                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 35, height: 35)
-                    .clipShape(Circle())
-                    .frame(height: 35)
+               ProfilePhotoView(urlString: recipe.user.imageURL ?? "")
                 
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 4) {
@@ -49,7 +36,7 @@ struct RecipeCardView: View {
                     .font(.system(size: 15))
                     
                     HStack(spacing: 4) {
-                        Text(" 27 minutes")
+                        Text("27 minutes")
                         Text("ago")
                     }
                     .font(.system(size: 13))

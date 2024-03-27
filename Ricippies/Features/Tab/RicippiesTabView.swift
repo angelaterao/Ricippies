@@ -18,7 +18,7 @@ struct RicippiesTabView: View {
     @State var selectedIndex = 0
     @State var showModal = false
     
-    
+    @StateObject var viewModel = RicippiesViewModel(service: RicippiesService())
     
 //    init() {
 //        UITabBar.appearance().unselectedItemTintColor = UIColor.systemBackground
@@ -30,13 +30,13 @@ struct RicippiesTabView: View {
             ZStack {
                 switch selectedIndex {
                 case 0:
-                    FeedView()
+                    FeedView(recipes: viewModel.recipes)
                 case 1:
                     CategoriesView()
                 case 3:
                     SavedRicippiesView()
                 case 4:
-                    AccountView()
+                    AccountView(recipes: viewModel.recipes)
                 default:
                     Text("Remaining Tabs")
                 }

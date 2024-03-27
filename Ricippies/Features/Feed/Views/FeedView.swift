@@ -14,12 +14,12 @@ enum FilterState {
 struct FeedView: View {
     
     @State private var filterState: FilterState = .all
-    @StateObject var viewModel = FeedViewModel(service: FeedService())
+    
+    let recipes: [Recipe]
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                
+            List {
                 VStack(alignment: .leading, spacing: 25) {
                     
                     Text("Ricippies Feed")
@@ -47,31 +47,27 @@ struct FeedView: View {
                     .font(.headline)
                 }
                 
-                Spacer(minLength: 20)
-                
-                LazyVStack(spacing: 33) {
-                    
-                    switch filterState {
-                    case .me :
-                        Text("test me")
-                    case .all :
-                        ForEach(viewModel.recipes) { recipe in
-                            NavigationLink(value: recipe) {
-                                RecipeCardView(recipe: recipe)
+                switch filterState {
+                case .me :
+                    Text("test me")
+                case .all :
+                    ForEach(recipes) { recipe in
+                        ZStack {
+                            NavigationLink(destination: RecipeDetailView(recipe: recipe).navigationBarBackButtonHidden()) {
+                                EmptyView()
                             }
+                            .opacity(0)
+                            
+                            RecipeCardView(recipe: recipe)
                         }
-                    case .others :
-                        Text("test others")
                     }
+                    .listRowSeparator(.hidden)
+                case .others :
+                    Text("test others")
                 }
             }
-            .navigationBarHidden(true)
-            .padding(25)
-            .navigationDestination(for: Recipe.self) { recipe in
-                RecipeDetailView(recipe: recipe)
-                    .navigationBarBackButtonHidden()
-            }
-            .scrollIndicators(.hidden)
+            .listStyle(.plain)
+            .buttonStyle(BorderlessButtonStyle())
         }
         
     }
@@ -79,6 +75,6 @@ struct FeedView: View {
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedView(recipes: DeveloperPreview.shared.recipes)
     }
 }

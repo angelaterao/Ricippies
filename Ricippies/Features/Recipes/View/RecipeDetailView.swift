@@ -111,11 +111,7 @@ struct ProfileBannerView: View {
     var body: some View {
         HStack() {
             
-            Image(recipe.user.imageURL ?? "")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 35, height: 35)
-                .clipShape(Circle())
+            ProfilePhotoView(urlString: recipe.user.imageURL ?? "")
             
             VStack(alignment: .leading, spacing: 2) {
                 HStack(spacing: 4) {
