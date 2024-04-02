@@ -24,4 +24,5 @@ class RicippiesViewModel: ObservableObject {
             print("DEBUG: Failed to fetch recipes with error: \(error.localizedDescription)")
         }
     }
+    
 }

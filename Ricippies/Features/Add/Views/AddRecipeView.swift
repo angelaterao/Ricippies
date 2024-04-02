@@ -92,15 +92,25 @@ struct AddRecipeView: View {
                     }
                 } label: {
                     Text("Add Recipe")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .frame(height: 44)
+                        .font(.system(size: 14))
+                        .bold()
+                        .foregroundColor(Color(Constants.brandPrimary))
+                        .frame(height: 35)
                         .padding(.horizontal)
                         .overlay {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(lineWidth: 1.0)
-                                .foregroundColor(Color(.systemGray4))
+                                .foregroundColor(Color(Constants.brandPrimary))
                         }
+//                        .font(.subheadline)
+//                        .foregroundColor(.gray)
+//                        .frame(height: 44)
+//                        .padding(.horizontal)
+//                        .overlay {
+//                            RoundedRectangle(cornerRadius: 20)
+//                                .stroke(lineWidth: 1.0)
+//                                .foregroundColor(Color(.systemGray4))
+//                        }
                 }
                 
             }
@@ -152,14 +162,15 @@ struct RecipeIngredientsInfoView: View {
                     ingredientsCount += 1
                 } label: {
                     Text("+ Add Ingredient")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .frame(height: 44)
+                        .font(.system(size: 14))
+                        .bold()
+                        .foregroundColor(Color(Constants.brandPrimary))
+                        .frame(height: 35)
                         .padding(.horizontal)
                         .overlay {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(lineWidth: 1.0)
-                                .foregroundColor(Color(.systemGray4))
+                                .foregroundColor(Color(Constants.brandPrimary))
                         }
                 }
                 .padding([.leading, .trailing], 30)
@@ -203,14 +214,15 @@ struct RecipePreparationInfoView: View {
                     preparationSteps += 1
                 } label: {
                     Text("+ Add Step")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .frame(height: 44)
+                        .font(.system(size: 14))
+                        .bold()
+                        .foregroundColor(Color(Constants.brandPrimary))
+                        .frame(height: 35)
                         .padding(.horizontal)
                         .overlay {
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(lineWidth: 1.0)
-                                .foregroundColor(Color(.systemGray4))
+                                .foregroundColor(Color(Constants.brandPrimary))
                         }
                 }
                 .padding([.leading, .trailing], 30)

@@ -58,7 +58,7 @@ struct FeedView: View {
                             }
                             .opacity(0)
                             
-                            RecipeCardView(recipe: recipe)
+                            RecipeCardLargeView(recipe: recipe)
                         }
                     }
                     .listRowSeparator(.hidden)

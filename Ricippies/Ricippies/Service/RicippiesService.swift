@@ -1,25 +1,25 @@
 //
-//  FeedService.swift
+//  RicippiesService.swift
 //  Ricippies
 //
-//  Created by Angela Terao on 31/01/2024.
+//  Created by Angela Terao on 18/03/2024.
 //
 
-//import Foundation
-//
-//class FeedService {
-//
-//    enum ServiceError: Error {
-//        case invalidURL
-//        case invalidResponse
-//        case invalidData
-//        case decodingError(DecodingError)
-//    }
-//
-////    func fetchRecipes() async throws -> [Recipe] {
-////        return DeveloperPreview.shared.recipes
-////    }
-//
+import Foundation
+
+class RicippiesService {
+    
+    enum ServiceError: Error {
+        case invalidURL
+        case invalidResponse
+        case invalidData
+        case decodingError(DecodingError)
+    }
+    
+    func fetchRecipes() async throws -> [Recipe] {
+        return DeveloperPreview.shared.recipes
+    }
+    
 //    func fetchRecipes() async throws -> [Recipe] {
 //
 //        let urlString = "http://192.168.1.47:8080/api/rest/1/recipes"
@@ -39,8 +39,6 @@
 //        } catch {
 //            throw ServiceError.invalidData
 //        }
-//
 //    }
-//
-//}
-//
+    
+}

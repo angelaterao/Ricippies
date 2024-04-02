@@ -29,6 +29,8 @@
 		C6A4CC322B6A4EF300608D06 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A4CC312B6A4EF300608D06 /* DeveloperPreview.swift */; };
 		C6A4CC362B6A7AE300608D06 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A4CC352B6A7AE300608D06 /* FeedViewModel.swift */; };
 		C6A4CC382B6A7B4A00608D06 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A4CC372B6A7B4A00608D06 /* FeedService.swift */; };
+		C6A51B482BB46113001F7AAD /* RecipeCardSmallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A51B472BB46113001F7AAD /* RecipeCardSmallView.swift */; };
+		C6A51B4A2BB724A8001F7AAD /* DeleteRecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A51B492BB724A8001F7AAD /* DeleteRecipeService.swift */; };
 		C6A865C02B29C530009DEF25 /* RicippiesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */; };
 		C6A865C22B29C530009DEF25 /* RicippiesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */; };
 		C6A865C42B29C537009DEF25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6A865C32B29C537009DEF25 /* Assets.xcassets */; };
@@ -39,7 +41,7 @@
 		C6A865D42B29C86C009DEF25 /* SavedRicippiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */; };
 		C6A865D62B29CC73009DEF25 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D52B29CC73009DEF25 /* Constants.swift */; };
 		C6A865D82B29E10E009DEF25 /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A865D72B29E10E009DEF25 /* AddRecipeView.swift */; };
-		C6CF7F002B4D801D001EDE98 /* RecipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF7EFF2B4D801D001EDE98 /* RecipeCardView.swift */; };
+		C6CF7F002B4D801D001EDE98 /* RecipeCardLargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CF7EFF2B4D801D001EDE98 /* RecipeCardLargeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +67,8 @@
 		C6A4CC312B6A4EF300608D06 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		C6A4CC352B6A7AE300608D06 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		C6A4CC372B6A7B4A00608D06 /* FeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedService.swift; sourceTree = "<group>"; };
+		C6A51B472BB46113001F7AAD /* RecipeCardSmallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardSmallView.swift; sourceTree = "<group>"; };
+		C6A51B492BB724A8001F7AAD /* DeleteRecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRecipeService.swift; sourceTree = "<group>"; };
 		C6A865BC2B29C530009DEF25 /* Ricippies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ricippies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6A865BF2B29C530009DEF25 /* RicippiesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesApp.swift; sourceTree = "<group>"; };
 		C6A865C12B29C530009DEF25 /* RicippiesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RicippiesTabView.swift; sourceTree = "<group>"; };
@@ -76,7 +80,7 @@
 		C6A865D32B29C86C009DEF25 /* SavedRicippiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedRicippiesView.swift; sourceTree = "<group>"; };
 		C6A865D52B29CC73009DEF25 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C6A865D72B29E10E009DEF25 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
-		C6CF7EFF2B4D801D001EDE98 /* RecipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardView.swift; sourceTree = "<group>"; };
+		C6CF7EFF2B4D801D001EDE98 /* RecipeCardLargeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardLargeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				C6456D572BA8A35700D338D1 /* RicippiesService.swift */,
+				C6A51B492BB724A8001F7AAD /* DeleteRecipeService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -136,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				C69843192B4EE840004C02BA /* RecipeDetailView.swift */,
+				C6CF7EFF2B4D801D001EDE98 /* RecipeCardLargeView.swift */,
+				C6A51B472BB46113001F7AAD /* RecipeCardSmallView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				C6A865CD2B29C7AE009DEF25 /* FeedView.swift */,
-				C6CF7EFF2B4D801D001EDE98 /* RecipeCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,8 +433,9 @@
 				C680595D2B97352F00014192 /* PreparationStepView.swift in Sources */,
 				C6131AE02B57D43D00A8E7BE /* DismissButton.swift in Sources */,
 				C6A865D02B29C7F5009DEF25 /* CategoriesView.swift in Sources */,
-				C6CF7F002B4D801D001EDE98 /* RecipeCardView.swift in Sources */,
+				C6CF7F002B4D801D001EDE98 /* RecipeCardLargeView.swift in Sources */,
 				C69B1F1F2B8E186D004D441A /* AddRecipeService.swift in Sources */,
+				C6A51B4A2BB724A8001F7AAD /* DeleteRecipeService.swift in Sources */,
 				C6A865D82B29E10E009DEF25 /* AddRecipeView.swift in Sources */,
 				C68059612B98CEFF00014192 /* PhotoSelectorView.swift in Sources */,
 				C6A865C22B29C530009DEF25 /* RicippiesTabView.swift in Sources */,
@@ -450,6 +457,7 @@
 				C68059632B98D07200014192 /* PhotoSelectorViewModel.swift in Sources */,
 				C6A865C02B29C530009DEF25 /* RicippiesApp.swift in Sources */,
 				C698431D2B4EEFEA004C02BA /* ImageCarouselView.swift in Sources */,
+				C6A51B482BB46113001F7AAD /* RecipeCardSmallView.swift in Sources */,
 				C6A4CC362B6A7AE300608D06 /* FeedViewModel.swift in Sources */,
 				C6A865D22B29C83C009DEF25 /* AccountView.swift in Sources */,
 				C6A4CC382B6A7B4A00608D06 /* FeedService.swift in Sources */,

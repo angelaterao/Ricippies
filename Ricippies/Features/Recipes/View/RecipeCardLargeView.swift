@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecipeCardView: View {
+struct RecipeCardLargeView: View {
     
     @State var isFavourite: Bool = false
     
@@ -62,6 +62,6 @@ struct RecipeCardView: View {
 
 struct ListingView_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeCardView(recipe: DeveloperPreview.shared.recipes[0])
+        RecipeCardLargeView(recipe: DeveloperPreview.shared.recipes[0])
     }
 }

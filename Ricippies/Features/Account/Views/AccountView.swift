@@ -11,6 +11,13 @@ struct AccountView: View {
     
     @StateObject var viewModel: AccountViewModel
     
+    var columns: [GridItem] = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
+    let height: CGFloat = 250
+    
     init(recipes: [Recipe]) {
         _viewModel = StateObject(wrappedValue: AccountViewModel(recipes: recipes))
     }
@@ -46,7 +53,7 @@ struct AccountView: View {
                 }
                 .padding()
                 
-                VStack(spacing: 20) {
+                VStack(spacing: 10) {
                     HStack {
                         VStack {
                             Text("1")
@@ -79,11 +86,15 @@ struct AccountView: View {
                             Text("Edit profile")
                                 .font(.system(size: 14))
                                 .bold()
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(Constants.brandPrimary))
                                 .frame(height: 30)
                                 .frame(maxWidth: .infinity)
                                 .padding(.horizontal)
-                                .background(RoundedRectangle(cornerRadius: 5).fill(Color(.systemGray6)))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(lineWidth: 1.0)
+                                        .foregroundColor(Color(Constants.brandPrimary))
+                                }
                         }
                         
                         Button {
@@ -92,63 +103,47 @@ struct AccountView: View {
                             Text("Share profile")
                                 .font(.system(size: 14))
                                 .bold()
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(Constants.brandPrimary))
                                 .frame(height: 30)
                                 .frame(maxWidth: .infinity)
                                 .padding(.horizontal)
-                                .background(RoundedRectangle(cornerRadius: 5).fill(Color(.systemGray6)))
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(lineWidth: 1.0)
+                                        .foregroundColor(Color(Constants.brandPrimary))
+                                }
                         }
                     }
                     .padding()
                 }
                 
+                Divider().frame(width: 350)
+                
+                LazyVGrid(columns: columns, spacing: 1) {
+                    ForEach(viewModel.recipes) { recipe in
+                        NavigationLink(destination:
+                                        RecipeDetailView(recipe: recipe)
+                            .navigationBarBackButtonHidden()) {
+                                RecipeCardSmallView(isShowingAccount: true, recipe: recipe)
+                                    .frame(height: height)
+                        }
+                    }
+                }
+                .padding()
+                
+//                ForEach(viewModel.recipes) { recipe in
+//                    HStack(spacing: 1) {
+//                        NavigationLink(destination: RecipeDetailView(recipe: recipe).navigationBarBackButtonHidden()) {
+//                            EmptyView()
+//                        }
+//                        .opacity(0)
+//
+//                        RecipeCardSmallView(recipe: recipe)
+//                    }
+//                }
+//                .listRowSeparator(.hidden)
                 
                 
-                //                    HStack() {
-                //
-                //                        Image(viewModel.recipes. ?? "")
-                //                            .resizable()
-                //                            .scaledToFill()
-                //                            .frame(width: 35, height: 35)
-                //                            .clipShape(Circle())
-                //
-                //                        VStack(alignment: .leading, spacing: 2) {
-                //                            HStack(spacing: 4) {
-                //                                Text("By")
-                //                                Text("\(recipe.user.firstName) \(recipe.user.familyName)")
-                //                                    .fontWeight(.semibold)
-                //                            }
-                //                            .font(.system(size: 15))
-                //
-                //                            Text(recipe.user.description)
-                //                                .italic(true)
-                //                                .font(.system(size: 13))
-                //                                .foregroundColor(.gray)
-                //
-                //                        }
-                //                        .frame(maxWidth: .infinity, alignment: .leading)
-                //
-                //                    }.padding()
-                
-                //                    Divider().frame(width: 350)
-                //
-                //                    ForEach(viewModel.recipes) { recipe in
-                //                        ZStack {
-                //                            NavigationLink(destination: RecipeDetailView(recipe: recipe).navigationBarBackButtonHidden()) {
-                //                                EmptyView()
-                //
-                //                            }
-                //                            .opacity(0)
-                //
-                //                            RecipeCardView(recipe: recipe)
-                //                        }
-                //
-                //                    }
-                //                    .listRowSeparator(.hidden)
-                //
-                //                }
-                //                .listStyle(.plain)
-                //                .buttonStyle(BorderlessButtonStyle())
             }
         }
     }
