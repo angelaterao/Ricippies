@@ -80,7 +80,6 @@ struct RicippiesTabView: View {
         .fullScreenCover(isPresented: $showModal) {
             AddRecipeView()
         }
-        
 
         
 //        .init(white: 0.8)
@@ -135,6 +134,8 @@ struct RicippiesTabView: View {
 //        }
 //        .accentColor(Color(Constants.brandPrimary))
     }
+    
+
 }
 
 struct RicippiesTabView_Previews: PreviewProvider {

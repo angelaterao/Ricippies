@@ -34,6 +34,8 @@ struct RecipeDetailView: View {
                 
                 StepsView(recipe: viewModel.recipe)
                 
+                FooterView(recipeId: viewModel.recipe.id)
+                
 //                CommentView()
                 
             }
@@ -309,6 +311,47 @@ struct CommentView: View {
             Spacer()
             
         }
+        
+    }
+    
+}
+
+struct FooterView: View {
+    
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
+    
+    @ObservedObject var deleteViewModel = DeleteRecipeViewModel(service: DeleteRecipeService())
+    
+    let recipeId: Int
+    
+    var body: some View {
+        
+        Button {
+            print("trying to delete")
+            
+            Task {
+                do {
+                    try await deleteViewModel.deleteRecipe(recipeId: recipeId)
+                    presentationMode.wrappedValue.dismiss()
+                } catch {
+                    print("Error adding recipe: \(error)")
+                }
+            }
+        } label: {
+            Text("Delete recipeID \(recipeId)")
+                .font(.system(size: 14))
+                .bold()
+                .foregroundColor(Color(Constants.brandPrimary))
+                .frame(height: 35)
+                .padding(.horizontal)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(lineWidth: 1.0)
+                        .foregroundColor(Color(Constants.brandPrimary))
+                }
+        }
+        .padding([.leading, .trailing], 30)
         
     }
     

@@ -15,9 +15,9 @@ class DeleteRecipeService {
         case requestFailed(Error)
     }
     
-    func deleteRecipe(recipe: Recipe) async throws {
+    func deleteRecipe(recipeId: Int) async throws {
         
-        let urlString = "http://192.168.1.47:8080/api/rest/1/recipes/\(recipe.id)"
+        let urlString = "http://192.168.1.47:8080/api/rest/1/recipes/\(recipeId)"
         
         guard let url = URL(string: urlString) else { throw ServiceError.invalidURL }
         
